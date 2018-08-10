@@ -1,0 +1,52 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页,,
+    {
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTitleText": "主页",
+        "navigationBarBackgroundColor": "#7FFFD4"
+      }
+    },
+    {
+    	"path": "pages/userCenter/userCenter",
+    	"style": {
+    		"navigationBarTitleText": "个人中心",
+    		"navigationBarBackgroundColor": "#7FFFD4"
+    	}
+    },
+    {
+    	"path": "pages/index/index",
+    	"style": {
+    		"navigationBarTitleText": "白帝城",
+    		"navigationBarBackgroundColor": "red"
+    	}
+    }
+	],
+  "tabBar": {
+    "color": "#cdcdcd",
+    "selectedColor": "#f5a615",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list":[
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home-selected.png",
+        "text": "主页"
+      },
+      {
+      	"pagePath": "pages/userCenter/userCenter",
+      	"iconPath": "static/tabbar/user.png",
+      	"selectedIconPath": "static/tabbar/user-selected.png",
+      	"text": "账户"
+      }
+    ]
+  },
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "App",
+		"navigationBarBackgroundColor": "sandybrown",
+		"backgroundColor": "sandybrown",
+    "navigationStyle": "custom" // default: 有状态栏, custom: 沉浸式状态栏
+	}
+}
