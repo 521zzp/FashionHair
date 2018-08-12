@@ -14,13 +14,16 @@
         </picker>
       </view>
     </view>
-    <navigator url="/pages/index/index" hover-class="navigator-hover">
-    		<button type="default">去index</button>
-    </navigator>
+    <view class="product-content">
+    	<ProductGroup />
+      <ProductItem />
+    </view>
 	</view>
 </template>
 
 <script>
+  import ProductGroup from '../../components/home/ProductGroup.vue'
+  import ProductItem from '../../components/home/ProductItem.vue'
 	export default {
     data () {
       return {
@@ -28,19 +31,23 @@
         autoplay: true,
         interval: 2000,
         duration: 1000,
-        img_list: [
-          '../../static/home-swiper/1.jpg',
-          '../../static/home-swiper/2.jpg',
-          '../../static/home-swiper/3.jpg'
-        ],
         store_index: 0,
         store_list: [ '嘉定白银路店', '徐汇店', '松江店', '宝山店', '浦东店', '虹口店' ]
+      }
+    },
+    computed:{
+      img_list () {
+        return this.$store.state.home.banner_img
       }
     },
     methods: {
       selectStore (e) {
         this.store_index = e.detail.value
       }
+    },
+    components:{
+      ProductGroup,
+      ProductItem
     },
 	}
 </script>
@@ -52,6 +59,8 @@
   .swiper-container{
     display: block;
     position: relative;
+    height: 362px;
+    background-color: red;
   }
   .location-btn{
     position: absolute;
