@@ -3,7 +3,6 @@
     <view v-for="(item, index) in product_group" :key="index" class="product-group-item" :class="{ active: index === 3}">
       <text class="item-name">{{ item }}</text>
     </view>
-    
   </scroll-view>
 </template>
 
@@ -12,7 +11,7 @@
 		data () {
       return {
         product_group: [ 'RGB颜色值与十六进制颜色码转换工具', '染发', '烫发', '染发', 
-        '烫发', '染发', '烫发', '造型', '护肤', '美容', '美甲', '源于开发者，', '服务开发者。' ],
+        '烫发', '染发22', '烫发', '造型', '护肤', '美容', '美甲', '源于开发者，', '服务开发者。' ],
         active: 3
       }
     },
@@ -28,30 +27,31 @@
         if (uni.canIUse('getSystemInfoSync.return.windowHeight')) {
           try {
             const res = uni.getSystemInfoSync();
-            console.log('xppppppppppppppp')
-            console.log(res.model);
-            console.log(res.pixelRatio);
-            console.log(res.windowWidth);
-            console.log(res.windowHeight);
-            console.log(res.language);
-            console.log(res.version);
-            console.log(res.platform);
-            const height = (res.windowHeight - 362 - 12) * (750 / res.windowWidth)
-            console.log('height')
-            console.log(height)
+            console.log('windowHeight: ' + res.windowHeight)
+            console.log('windowWidth: ' + res.windowWidth)
+            console.log('screenHeight: ' + res.screenHeight)
+            console.log('screenWidth: ' + res.screenWidth)
+            console.log('statusBarHeight: ' + res.statusBarHeight)
+            // #ifdef MP-WEIXIN
+              var height = ((750 * res.windowHeight) / res.windowWidth - 362) * res.windowWidth / 750
+            // #endif
+            // #ifdef APP-PLUS
+              var height = ((750 * (res.windowHeight - 58)) / res.windowWidth - 362) * res.windowWidth / 750 
+            // #endif
+            
+            console.log('height: ' + height)
             return height
           } catch (e) {
-            console.log('e', e)
-            return 1000
+            return 438
           }
         } else {
-          console.log('error')
-          return 1000
+          return 438
         }
       }
     },
 	}
 </script>
+
 
 <style>
   .product-group{

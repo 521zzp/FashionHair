@@ -60,13 +60,12 @@
     display: block;
     position: relative;
     height: 362px;
-    background-color: red;
   }
   .location-btn{
     position: absolute;
     color: #efefef;
     font-size: 30px;
-    top: 50px;
+    top: 20px;
     left: 20px;
     background-color: rgba(0, 0, 0, 0.6);
     padding: 0 30px;

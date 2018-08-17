@@ -14,7 +14,7 @@
         <open-data class="nick-name" type="userNickName"></open-data>
       <!-- #endif -->
       <!-- #ifdef APP-PLUS -->
-        <text v-if="logined" class="nick-name">曾志鹏</text>
+        <text v-if="logined" class="nick-name">山无陵</text>
       <!-- #endif -->
       <view v-if="logined" class="logined-info">
         <text>我的会员等级：1级</text>
@@ -29,7 +29,7 @@
 	export default {
 		computed: {
       logined () {
-        return true
+        return false
       },
       userFaceImg () {
         
@@ -87,7 +87,6 @@
     font-size: 32px;
    }
   .user-info{
-    margin-top: 50px;
     width: 100%;
     height: 200px;
     background-color: #FFEC8B;

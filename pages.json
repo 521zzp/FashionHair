@@ -18,7 +18,42 @@
     	"path": "pages/index/index",
     	"style": {
     		"navigationBarTitleText": "白帝城",
-    		"navigationBarBackgroundColor": "red"
+    		"navigationBarBackgroundColor": "#7FFFD4"
+    	}
+    },
+    {
+    	"path": "pages/cardShop/cardShop",
+    	"style": {
+    		"navigationBarTitleText": "会员卡",
+    		"navigationBarBackgroundColor": "#7FFFD4"
+    	}
+    },
+    {
+    	"path": "pages/myCard/myCard",
+    	"style": {
+    		"navigationBarTitleText": "我的会员卡",
+    		"navigationBarBackgroundColor": "#7FFFD4"
+    	}
+    },
+    {
+    	"path": "pages/order/order",
+    	"style": {
+    		"navigationBarTitleText": "订单",
+    		"navigationBarBackgroundColor": "#7FFFD4"
+    	}
+    },
+    {
+    	"path": "pages/companyInfo/companyInfo",
+    	"style": {
+    		"navigationBarTitleText": "上海XX",
+    		"navigationBarBackgroundColor": "#7FFFD4"
+    	}
+    },
+    {
+    	"path": "pages/aboutUs/aboutUs",
+    	"style": {
+    		"navigationBarTitleText": "关于我们",
+    		"navigationBarBackgroundColor": "#7FFFD4"
     	}
     }
 	],
@@ -47,6 +82,6 @@
 		"navigationBarTitleText": "App",
 		"navigationBarBackgroundColor": "sandybrown",
 		"backgroundColor": "sandybrown",
-    "navigationStyle": "custom" // default: 有状态栏, custom: 沉浸式状态栏
+    "navigationStyle": "default" // default: 有状态栏, custom: 沉浸式状态栏
 	}
 }

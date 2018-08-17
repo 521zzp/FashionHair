@@ -38,7 +38,12 @@
       	if (uni.canIUse('getSystemInfoSync.return.windowHeight')) {
       		try {
       			const res = uni.getSystemInfoSync();
-      			const height = (res.windowHeight - 362 - 12) * (750 / res.windowWidth)
+            // #ifdef MP-WEIXIN
+            	var height = ((750 * res.windowHeight) / res.windowWidth - 362) * res.windowWidth / 750
+            // #endif
+            // #ifdef APP-PLUS
+            	var height = ((750 * (res.windowHeight - 58)) / res.windowWidth - 362) * res.windowWidth / 750
+            // #endif
       			return height
       		} catch (e) {
       			return 420
