@@ -1,4 +1,4 @@
-export const BASE = 'http://localhost:4000/api'
+export const BASE = 'http://localhost:4100/api'
 export const GET_USER_INFO = BASE + '/user_info'  // 获取用户信息
 
 /* 主页 */

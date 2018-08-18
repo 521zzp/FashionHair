@@ -13,10 +13,10 @@ export const resultAny = (datas) => {
       // 返回数据里面仅有一个属性，属性名为list，且对应值类型为Array时返回该list
       return datas.result.list
     } else {
-      return Object.assign({}, { msg: datas.msg }, datas.result)
+      return Object.assign({}, { msg: datas.message }, datas.result)
     }
   } else {
-    if (datas.msg) {
+    if (datas.message) {
     }
     return undefined
   }
