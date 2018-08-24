@@ -2,7 +2,7 @@
 	<scroll-view scroll-y="true" class="product-item-container"  :style="{ height: leftScreenHeight + 'px' }">
     <view class="product-item" v-for="(item, index) in temp_list" :key="index">
       <view class="image-content">
-        <image src="../../static/item.jpg" mode="widthFix"></image>
+        <image src="../../static/item.jpg" mode="widthFix" class="product-img"></image>
       </view>
       <view class="discription">
         <text class="product-name">产品{{ item }}号</text>
@@ -90,7 +90,13 @@
     text-overflow: ellipsis;
   }
   .image-content{
+   width: 120px;
+   height: 120px;
+   margin-top: 6px;
+  }
+  .product-img{
     width: 120px;
+    height: 120px;
   }
   .product-item{
     padding: 30px 20px;

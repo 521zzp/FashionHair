@@ -1,13 +1,14 @@
 <template>
   <scroll-view class="product-group" scroll-y="true" :style="{ height: leftScreenHeight + 'px' }">
-    <view v-for="(item, index) in product_group" :key="index" class="product-group-item" :class="{ active: index === 3}">
-      <text class="item-name">{{ item }}</text>
+    <view v-for="(item, index) in list" :key="index" class="product-group-item" :class="{ active: index === 3}">
+      <text class="item-name">{{ item.name }}</text>
     </view>
   </scroll-view>
 </template>
 
 <script>
 	export default {
+    props: ['list'],
 		data () {
       return {
         product_group: [ 'RGB颜色值与十六进制颜色码转换工具', '染发', '烫发', '染发', 
@@ -23,7 +24,6 @@
     },
     computed: {
       leftScreenHeight () {
-        console.log('xxxxxxxxxxxxx')
         if (uni.canIUse('getSystemInfoSync.return.windowHeight')) {
           try {
             const res = uni.getSystemInfoSync();

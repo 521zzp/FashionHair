@@ -8,22 +8,22 @@ const state = {
     '../../static/home-swiper/2.jpg',
     '../../static/home-swiper/3.jpg'
   ],
-  store_list: []
+  product_list: []
 }
 
 
 const actions = {
   async getStoreList ({ commit }, obj) {
-    const store_list = await getModel(GET_STORE_LIST).then(analy)
-    console.log('store_list:')
-    console.log(store_list)
-    store_list && commit(types.GET_STORE_LIST, store_list)
+    const product_list = await getModel(GET_STORE_LIST).then(analy)
+    console.log('product_list:')
+    console.log(product_list)
+    product_list && commit(types.GET_STORE_LIST, product_list)
   }
 }
 
 const mutations = {
-  [types.GET_STORE_LIST] (state, store_list) {
-    state.store_list = store_list
+  [types.GET_STORE_LIST] (state, product_list) {
+    state.product_list = product_list
   }
 }
 

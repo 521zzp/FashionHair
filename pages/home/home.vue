@@ -15,7 +15,7 @@
       </view>
     </view>
     <view class="product-content">
-    	<ProductGroup />
+    	<ProductGroup :list="product_group"/>
       <ProductItem />
     </view>
 	</view>
@@ -38,6 +38,24 @@
     computed:{
       img_list () {
         return this.$store.state.home.banner_img
+      },
+      product_group () {
+        const product_list = this.$store.state.home.product_list
+        var temp_arr = [];
+        const arr = [];
+        product_list.map( el => {
+          temp_arr.push(el.group.name)
+        })
+        temp_arr = Array.from(new Set(temp_arr))
+        temp_arr.map(el => {
+          const children = product_list.filter(item => item.group.name === el)
+          arr.push({
+            ...children[0].group,
+            children: children.length,
+          })
+        })
+        console.log(arr)
+        return arr
       }
     },
     methods: {
