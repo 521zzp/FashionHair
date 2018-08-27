@@ -1,16 +1,17 @@
 <template>
-	<scroll-view scroll-y="true" class="product-item-container"  :style="{ height: leftScreenHeight + 'px' }">
-    <view class="product-item" v-for="(item, index) in temp_list" :key="index">
+	<scroll-view scroll-y="true" class="product-item-container" :scroll-with-animation="true"
+      :scroll-top="scrollTop" :style="{ height: leftScreenHeight + 'px' }">
+    <view class="product-item" v-for="(item, index) in list" :key="index">
       <view class="image-content">
-        <image src="../../static/item.jpg" mode="widthFix" class="product-img"></image>
+        <image :src="item.img" mode="widthFix" class="product-img"></image>
       </view>
       <view class="discription">
-        <text class="product-name">产品{{ item }}号</text>
-        <text class="product-discription">日东月西兮徒相望，不得相随兮空断肠</text>
+        <text class="product-name">{{ item.name }}</text>
+        <text class="product-discription">{{ item.discription }}</text>
         <view class="product-price">
-          <text class="now-price">￥ 37</text>
-          <text class="original-price">原价：￥52</text>
-          <text class="order">下单</text>
+          <text class="now-price">￥ {{ item.group.order }}</text>
+          <text class="original-price">原价：￥{{ item.product_order }}</text>
+          <text class="order" @click="toPay(item.name, item.now_price, item.id)">下单</text>
         </view>
       </view>
     </view>
@@ -19,6 +20,7 @@
 
 <script>
 	export default {
+    props: ['list', 'product_group', 'active'],
 		data () {
       return {
         temp_list: [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -51,6 +53,30 @@
       	} else {
       		return 420
       	}
+      },
+      scrollTop () {
+        console.log('this.props.product_group')
+        console.log(this.product_group)
+      	var count = 0
+      	for (var i = 0; i < this.active; i++ ) {
+      		count += this.product_group[i].children
+      	}
+        const res = uni.getSystemInfoSync();
+      	return count * ( res.windowWidth / 750 * 200)
+      }
+    },
+    methods: {
+      toPay (name, money, id) {
+        this.$store.commit('updatePaymentInfo', {
+          order_type: 'product',
+          pay_for: name,
+          cost: money,
+          product_id: id,
+          card_id: ''
+        })
+        uni.navigateTo({
+            url: '/pages/payment/payment'
+        });
       }
     },
 	}
@@ -60,7 +86,7 @@
   .order{
     float: right;
     padding: 0 20px;
-    background-color: #FFEC8B;
+    background-color: #FFC125;
     border-radius: 24px;
     color: #fff;
   }
@@ -87,20 +113,21 @@
     display: block;
     overflow: hidden;
     white-space: nowrap;
+    margin-top: 10px;
     text-overflow: ellipsis;
   }
   .image-content{
    width: 120px;
    height: 120px;
-   margin-top: 6px;
   }
   .product-img{
     width: 120px;
     height: 120px;
   }
   .product-item{
-    padding: 30px 20px;
+    padding: 20px 20px;
     overflow: hidden;
+    height: 200px;
   }
   .product-item-container{
     width: 550px;

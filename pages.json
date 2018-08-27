@@ -43,6 +43,13 @@
     	}
     },
     {
+    	"path": "pages/payment/payment",
+    	"style": {
+    		"navigationBarTitleText": "支付",
+    		"navigationBarBackgroundColor": "#7FFFD4"
+    	}
+    },
+    {
     	"path": "pages/companyInfo/companyInfo",
     	"style": {
     		"navigationBarTitleText": "上海XX",

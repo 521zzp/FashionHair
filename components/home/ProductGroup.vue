@@ -1,6 +1,7 @@
 <template>
   <scroll-view class="product-group" scroll-y="true" :style="{ height: leftScreenHeight + 'px' }">
-    <view v-for="(item, index) in list" :key="index" class="product-group-item" :class="{ active: index === 3}">
+    <view v-for="(item, index) in list" @click="changeGroup(index)"
+      :key="index" class="product-group-item" :class="{ active: index === active}">
       <text class="item-name">{{ item.name }}</text>
     </view>
   </scroll-view>
@@ -8,12 +9,11 @@
 
 <script>
 	export default {
-    props: ['list'],
+    props: ['list', 'active'],
 		data () {
       return {
         product_group: [ 'RGB颜色值与十六进制颜色码转换工具', '染发', '烫发', '染发', 
         '烫发', '染发22', '烫发', '造型', '护肤', '美容', '美甲', '源于开发者，', '服务开发者。' ],
-        active: 3
       }
     },
     methods: {
@@ -21,6 +21,9 @@
         console.log(1)
         console.log(uni.getStorageInfoSync())
       },
+      changeGroup (index) {
+        this.$emit('changeGroup', index)
+      }
     },
     computed: {
       leftScreenHeight () {
@@ -65,9 +68,12 @@
     padding: 20px 20px;
     line-height: 1.5;
     vertical-align: middle;
+    transition: all .3s;
   }
   .product-group-item.active{
-    background-color: #FCFCFC;
+    /* background-color: #FCFCFC; */ 
+    color: #FFFFFF;
+    background-color: #FFC125;
   }
   .item-name{
     text-align: center;

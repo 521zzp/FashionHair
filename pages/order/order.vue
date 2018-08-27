@@ -2,36 +2,36 @@
 	<view class="order-container">
     <view v-if="list.length > 0" class="order-item" v-for="(item, index) in list" :key="index">
       <view class="order-title">
-        <text class="order-type">门店消费</text>
+        <text class="order-type">{{ item.title }}</text>
       </view>
       <view class="order-product detail-item">
         <text class="title">相关产品：</text>
-        <text class="value">购买Vip卡</text>
+        <text class="value">{{ item.product }}</text>
       </view>
       
       <view class="order-product detail-item">
       	<text class="title">时间：</text>
-      	<text class="value">2018-06-18 12:15</text>
+      	<text class="value">{{ item.time }}</text>
       </view>
       
       <view class="order-product detail-item">
       	<text class="title">支付方式：</text>
-      	<text class="value">荣耀黄金卡</text>
+      	<text class="value">{{ item.pay_way }}</text>
       </view>
       
       <view class="order-product detail-item">
       	<text class="title">原价：</text>
-      	<text class="value">￥30.00</text>
+      	<text class="value">￥{{ item.price }}</text>
       </view>
       
       <view class="order-product detail-item">
       	<text class="title">折扣：</text>
-      	<text class="value">75折</text>
+      	<text class="value">{{ item.discount }}</text>
       </view>
       
       <view class="order-product detail-item">
       	<text class="title">费用明细：</text>
-      	<text class="value">￥16.00</text>
+      	<text class="value">￥{{ item.cost }}</text>
       </view>
     </view>
     <view v-if="list.length == 0" class="no-order">
@@ -44,7 +44,11 @@
 	export default {
 		data () {
       return {
-        list : [ 1 ]
+      }
+    },
+    computed: {
+      list () {
+        return this.$store.state.order.order_list
       }
     },
 	}
@@ -55,7 +59,6 @@
     flex-direction: column;
     width: 100%;
     padding: 20px 0;
-    justify-content: space-between;
   }
   .order-item{
     background-color: #FFFFFF;

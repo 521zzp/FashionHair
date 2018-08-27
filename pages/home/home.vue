@@ -15,8 +15,8 @@
       </view>
     </view>
     <view class="product-content">
-    	<ProductGroup :list="product_group"/>
-      <ProductItem />
+    	<ProductGroup :list="product_group" :active="active" @changeGroup="changeGroup"/>
+      <ProductItem :list="product_item" :product_group="product_group" :active="active"/>
     </view>
 	</view>
 </template>
@@ -27,6 +27,7 @@
 	export default {
     data () {
       return {
+        active: 0,
         indicatorDots: false,
         autoplay: true,
         interval: 2000,
@@ -56,11 +57,32 @@
         })
         console.log(arr)
         return arr
+      },
+      product_item () {
+        const product_list = [].concat(this.$store.state.home.product_list)
+        product_list.sort(function (a, b) {
+          if (a.group.order < b.group.order) {
+            return -1
+          } else if (a.group.order === b.group.order) {
+             return a.product_order - b.product_order
+          } else {
+            return 1
+          }
+        })
+        return product_list;
+      },
+      active () {
+        //return this.$store.state.home.active
+        return this.active
       }
     },
     methods: {
       selectStore (e) {
         this.store_index = e.detail.value
+      },
+      changeGroup (index) {
+        this.active = index
+        
       }
     },
     components:{

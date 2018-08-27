@@ -8,7 +8,8 @@ const state = {
     '../../static/home-swiper/2.jpg',
     '../../static/home-swiper/3.jpg'
   ],
-  product_list: []
+  product_list: [],
+  active: 0,
 }
 
 

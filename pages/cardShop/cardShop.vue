@@ -1,26 +1,26 @@
 <template>
 	<view class="card-shop-container">
     <scroll-view class="card-container" scroll-y="true" :style="{ height: contentHeight + 'px' }">
-      <view class="card diamond-card">
+      <view class="card" v-for="(item,index) in cards" :class="item.card_type" :key="index">
       	<view class="card-content">
-      		<text class="title">至尊钻石卡</text>
+      		<text class="title">{{ item.name }}</text>
       		<text class="card-money">
       			<text class="iconfont icon-money money-icon"></text>
-      			10000
+      			{{ item.price }}
       		</text>
       		<text class="iconfont icon-king vip-icon"></text>
       		<view class="card-equity">
       			<text>
               <text class="iconfont icon-flower equity-icon"></text>
-              消费权益：全场6折
+              消费权益：{{ item.equity }}
             </text>
-            <text class="buy-btn" @click="buyVipCard('至尊钻石卡')">购买</text>
+            <text class="buy-btn" @click="buyVipCard(item.name, item.price, item.id)">购买</text>
       		</view>
       	</view>
       	<view class="bg-circle"></view>
       </view>
       
-      <view class="card silver-card">
+      <!--<view class="card silver-card">
       	<view class="card-content">
       		<text class="title">魅力白金卡</text>
       		<text class="card-money">
@@ -28,21 +28,14 @@
       			5000
       		</text>
       		<text class="iconfont icon-king vip-icon"></text>
-      		<!-- <text class="card-equity">
-      			<text>
-              <text class="iconfont icon-flower equity-icon"></text>
-              消费权益：全场8折
-            </text>
-            <text class="buy-btn" @click="buyVipCard('魅力白金卡')">购买</text>
-      		</text> -->
+      		 
           <view class="card-equity">
           	<text>
           		<text class="iconfont icon-flower equity-icon"></text>
-          		消费权益：全场6折
+          		消费权益：全场8折
           	</text>
-          	<text class="buy-btn" @click="buyVipCard('至尊钻石卡')">购买</text>
+          	<text class="buy-btn" @click="buyVipCard('魅力白金卡', 5000, 'a')">购买</text>
           </view>
-          
       	</view>
       	<view class="bg-circle"></view>
       </view>
@@ -60,11 +53,11 @@
               <text class="iconfont icon-flower equity-icon"></text>
               消费权益：全场9折
             </text>
-            <text class="buy-btn" @click="buyVipCard('荣耀黄金卡')">购买</text>
+            <text class="buy-btn" @click="buyVipCard('荣耀黄金卡', 1000, 'b')">购买</text>
           </view>
         </view>
         <view class="bg-circle"></view>
-      </view>
+      </view> -->
     </scroll-view>
 	</view>
 </template>
@@ -78,12 +71,41 @@
         console.log('height: ')
         console.log(height)
         return height
-      }
+      },
+      cards () {
+        return this.$store.state.card.card_shop
+      },
     },
     methods: {
-      buyVipCard (id) {
+      buyVipCard (name, money, id) {
         console.log('buy card')
         console.log(id)
+        this.$store.commit('updatePaymentInfo', {
+        	order_type: 'card',
+        	pay_for: name,
+        	cost: money,
+        	product_id: '',
+        	card_id: id
+        })
+        uni.navigateTo({
+        		url: '/pages/payment/payment'
+        });
+      },
+      cardType (card_type) {
+        console.log('card_type')
+        console.log(card_type)
+        return card_type
+        /* if (card_type === 'diamond') {
+          return 'diamond-card'
+        } else if (card_type === 'silver') {
+          return 'silver-card'
+        } else {
+          return ''
+        } */
+      	/* return {
+      		'diamond-card': true,
+      		'silver-card': false
+      	} */
       }
     },
 	}
