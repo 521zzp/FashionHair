@@ -82,7 +82,6 @@
       },
       changeGroup (index) {
         this.active = index
-        
       }
     },
     components:{

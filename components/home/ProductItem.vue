@@ -1,17 +1,17 @@
 <template>
 	<scroll-view scroll-y="true" class="product-item-container" :scroll-with-animation="true"
       :scroll-top="scrollTop" :style="{ height: leftScreenHeight + 'px' }">
-    <view class="product-item" v-for="(item, index) in list" :key="index">
+    <view class="product-item" v-for="(item, index) in list" @click="toDetails(item)" :key="index">
       <view class="image-content">
         <image :src="item.img" mode="widthFix" class="product-img"></image>
       </view>
       <view class="discription">
         <text class="product-name">{{ item.name }}</text>
-        <text class="product-discription">{{ item.discription }}</text>
+        <text class="product-discription">{{ item.description }}</text>
         <view class="product-price">
           <text class="now-price">￥ {{ item.group.order }}</text>
           <text class="original-price">原价：￥{{ item.product_order }}</text>
-          <text class="order" @click="toPay(item.name, item.now_price, item.id)">下单</text>
+          <text class="order" @click.stop="toPay(item.name, item.now_price, item.id)">下单</text>
         </view>
       </view>
     </view>
@@ -76,6 +76,14 @@
         })
         uni.navigateTo({
             url: '/pages/payment/payment'
+        });
+      },
+      toDetails (obj) {
+        console.log('ooooooooooooooooooo')
+        console.log(obj)
+        this.$store.commit('updateProductDetails',obj)
+        uni.navigateTo({
+        		url: '/pages/productDetails/productDetails'
         });
       }
     },

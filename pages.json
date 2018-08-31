@@ -8,6 +8,13 @@
       }
     },
     {
+    	"path": "pages/productDetails/productDetails",
+    	"style": {
+    		"navigationBarTitleText": "详情",
+    		"navigationBarBackgroundColor": "#7FFFD4"
+    	}
+    },
+    {
     	"path": "pages/userCenter/userCenter",
     	"style": {
     		"navigationBarTitleText": "个人中心",

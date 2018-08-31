@@ -8,8 +8,20 @@ const state = {
     '../../static/home-swiper/2.jpg',
     '../../static/home-swiper/3.jpg'
   ],
+  store_list: [
+    {
+      _id: 'afsafa',
+      name: '',
+      location: { }
+    },
+  ],       //店铺列表
+  selected_store: {
+    index: 0,
+    _id: ''
+  },
   product_list: [],
   active: 0,
+  product_details: {},  //商品详情
 }
 
 
@@ -25,6 +37,9 @@ const actions = {
 const mutations = {
   [types.GET_STORE_LIST] (state, product_list) {
     state.product_list = product_list
+  },
+  updateProductDetails (state, details) {
+    state.product_details = details
   }
 }
 
